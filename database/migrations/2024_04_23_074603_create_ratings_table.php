@@ -13,7 +13,12 @@ return new class extends Migration
     {
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
+            $table->decimal('star');
+            $table->foreignId('movie_id');
+            $table->foreignId('user_id');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('user');
+            $table->foreign('movie_id')->references('id')->on('movies');
         });
     }
 
@@ -22,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ratings');
+        Schema::dropIfExists('star');
     }
 };

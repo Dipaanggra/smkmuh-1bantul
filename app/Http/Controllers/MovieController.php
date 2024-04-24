@@ -4,104 +4,65 @@ namespace App\Http\Controllers;
 
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MovieController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function index(Request $request)
     {
-        return view('movies.index', [
-            'movies' => Movie::latest()->get()
-        ]);
+        $search = $request->search;
+        $movies = Movie::latest()
+            ->where('title', 'like', '%' . $search . '%')
+            ->get();
+        return view('movies.index', ['movies' => $movies]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('movies.create');
     }
 
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
             'title' => 'required',
-            'description' => 'required',
-            'sinopsis' => 'required',
-            'genre' => 'required',
             'actors' => 'required',
             'year' => 'required',
-            'durasi' => 'required',
+            'trailer' => 'required',
             'poster' => 'required',
-            'trailer' => 'required'
+            'plot' => 'required',
         ]);
-
-
-        $validated['poster'] = $request->file('poster')->store('photos', 'public');
-
+        $validated['poster'] = $request->file('poster')->store('photo', 'public');
         Movie::create($validated);
-
         return redirect()->route('movies.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Movie $movie)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Movie $movie)
     {
-        return view('movies.edit', [
-            'movie' => $movie
-        ]);
+        return view('movies.edit', ['movie' => $movie]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Movie $movie)
     {
         $validated = $request->validate([
             'title' => 'required',
-            'description' => 'required',
-            'sinopsis' => 'required',
-            'genre' => 'required',
             'actors' => 'required',
             'year' => 'required',
-            'durasi' => 'required',
-            'poster' => 'required',
-            'trailer' => 'required'
+            'trailer' => 'required',
+            'plot' => 'required',
         ]);
+        if ($request->file('poster')) {
 
-        if ($request->file('movies.index')) {
-
-            $validated['poster'] = $request->file('poster')->store('photos', 'public');
+            $validated['poster'] = $request->file('poster')->store('photo', 'public');
+            Storage::delete($movie->poster);
         }
-
         $movie->update($validated);
         return redirect()->route('movies.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Movie $movie)
     {
         $movie->delete();
-
         return redirect()->route('movies.index');
     }
 }

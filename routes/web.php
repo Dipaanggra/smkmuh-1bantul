@@ -4,6 +4,7 @@ use App\Http\Controllers\GenreController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RatingController;
+use App\Http\Controllers\UsermovieController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -20,7 +21,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('/admin/movies', MovieController::class);
     Route::resource('/admin/genres', GenreController::class);
-    Route::resource('/admin/ratings', RatingController::class);
+    Route::post('/ratings', [RatingController::class, 'store']);
+    Route::get('movies/', [UsermovieController::class, 'index']);
+    Route::get('movies/{id}', [UsermovieController::class, 'show']);
 });
 
 require __DIR__.'/auth.php';

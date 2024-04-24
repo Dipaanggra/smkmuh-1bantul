@@ -7,10 +7,11 @@
         @csrf
         <div class="">
             <x-input-label>Genre</x-input-label>
-            <x-text-input class="w-full" name="genre" placeholder="genre" />
+            <x-text-input class="w-full" name="name" placeholder="genre" />
         </div>
         <div class="flex justify-end">
             <button class="py-2 px-4 bg-yellow-400 hover:bg-yellow-500 rounded-lg text-sm">Add Genre</button>
         </div>
     </form>
 </x-admin-layout>
+

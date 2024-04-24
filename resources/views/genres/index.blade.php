@@ -1,3 +1,4 @@
+
 <x-admin-layout>
     <div class="flex justify-between">
         <h2>Genres</h2>
@@ -19,15 +20,15 @@
                             @foreach ($genres as $genre)
                                 <tr class="text-neutral-800">
                                     <td class="px-5 py-4 text-sm font-medium whitespace-nowrap">
-                                        {{ $genre->genre }}
+                                    {{$genre->name}}
                                     </td>
                                     <td class="px-5 py-4 text-sm space-x-2 font-medium text-right whitespace-nowrap">
                                         <div class="flex justify-end gap-2">
                                             <a class="text-blue-500 hover:text-blue-700"
                                                 href="{{ route('genres.edit', $genre->id) }}">Edit</a>
                                             <form action="{{ route('genres.destroy', $genre->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
+                                            @csrf
+                                            @method('DELETE')
                                                 <button class="text-red-500 hover:text-red-700"
                                                     href="">Delete</button>
                                             </form>

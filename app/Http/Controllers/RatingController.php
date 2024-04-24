@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Rating;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RatingController extends Controller
 {
@@ -20,7 +21,9 @@ class RatingController extends Controller
      */
     public function create()
     {
-        //
+        // return view('ratings.index', [
+        //     'ratings' => Rating::latest()->get()
+        // ]);
     }
 
     /**
@@ -28,7 +31,15 @@ class RatingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'star' => 'required',
+            'comment' => 'required',
+            'movie_id' => 'required',
+        ]);
+        $validated['user_id'] = Auth::id();
+        Rating::create($validated);
+
+        return redirect();
     }
 
     /**
@@ -36,9 +47,9 @@ class RatingController extends Controller
      */
     public function show(Rating $rating)
     {
-        $rating->show();
+        // $rating->show();
 
-        return redirect()->route('profile.details');
+        // return redirect()->route('profile.details');
     }
 
     /**

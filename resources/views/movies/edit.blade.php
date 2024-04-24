@@ -19,31 +19,19 @@
             <x-text-input value="{{ $movie->year }}" class="w-full" name="year" placeholder="year" />
         </div>
         <div class="">
-            <x-input-label>Durasi</x-input-label>
-            <x-text-input value="{{ $movie->durasi }}" class="w-full" name="durasi" placeholder="durasi" />
-        </div>
-        <div class="">
-            <x-input-label>Genre</x-input-label>
-            <x-text-input value="{{ $movie->Genre }}" class="w-full" name="genre" placeholder="Genre" />
-        </div>
-        <div class="">
             <x-input-label>Trailer</x-input-label>
             <x-text-input value="{{ $movie->trailer }}" class="w-full" name="trailer" placeholder="trailer" />
         </div>
         <div class="col-span-2">
-            <x-input-label>Sinopsis</x-input-label>
-            <x-text-input value="{{ $movie->sinopsis }}" class="w-full" name="sinopsis" placeholder="sinopsis" />
-        </div>
-        <div class="col-span-2">
-            <x-input-label>Description</x-input-label>
-            <x-text-input value="{{ $movie->description }}" class="w-full" name="description" placeholder="description" />
+            <x-input-label>Plot</x-input-label>
+            <x-text-input value="{{ $movie->plot }}" class="w-full" name="plot" placeholder="plot" />
         </div>
         <div class="col-span-2">
             <x-input-label>Poster</x-input-label>
             <x-text-input type="file" class="w-full" name="poster" placeholder="poster" />
         </div>
         <div class="flex justify-end col-start-2">
-            <button class="py-2 px-4 bg-yellow-400 hover:bg-yellow-500 rounded-lg text-sm">Edit Movie</button>
+            <button class="py-2 px-4 bg-yellow-400 hover:bg-yellow-500 rounded-lg text-sm">Add Movie</button>
         </div>
     </form>
 </x-admin-layout>

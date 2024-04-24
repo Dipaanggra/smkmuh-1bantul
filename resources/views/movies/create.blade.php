@@ -21,22 +21,11 @@
             <x-input-label>Trailer</x-input-label>
             <x-text-input class="w-full" name="trailer" placeholder="trailer" />
         </div>
-        <div class="">
-            <x-input-label>Durasi</x-input-label>
-            <x-text-input class="w-full" name="durasi" placeholder="durasi" />
-        </div>
         <div class="col-span-2">
-            <x-input-label>Sinposis</x-input-label>
+            <x-input-label>Plot</x-input-label>
             <textarea
                 class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                rows="3" placeholder="" name="sinposis"></textarea>
-
-        </div>
-        <div class="col-span-2">
-            <x-input-label>Description</x-input-label>
-            <textarea
-                class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                rows="3" placeholder="" name="description"></textarea>
+                rows="3" placeholder="" name="plot"></textarea>
 
         </div>
         <div class="">
@@ -64,7 +53,7 @@
                 class="hidden">
                 <option value=""></option>
                 @foreach (App\Models\Genre::all() as $genre)
-                    <option value="{{ $genre->id }}">{{ $genre->genre }}</option>
+                    <option value="{{ $genre->id }}">{{ $genre->name }}</option>
                 @endforeach
             </select>
         </div>

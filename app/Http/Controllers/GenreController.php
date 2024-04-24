@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Genre;
+use Illuminate\Http\Request;
 
 class GenreController extends Controller
 {
@@ -33,14 +33,10 @@ class GenreController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'genre' => 'required',
+            'name' => 'required',
         ]);
         Genre::create($validated);
         return redirect()->route('genres.index');
-
-        // $validated = $request->validated();
-        // Genre::create($validated);
-        // return redirect()->route('genres.index');
     }
 
     /**
@@ -65,7 +61,7 @@ class GenreController extends Controller
     public function update(Request $request, Genre $genre)
     {
         $validated = $request->validate([
-            'genre' => 'required',
+            'name' => 'required',
         ]);
         $genre->update($validated);
         return redirect()->route('genres.index');

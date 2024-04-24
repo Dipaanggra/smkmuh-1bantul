@@ -14,10 +14,6 @@
                                 <th class="px-5 py-3 text-xs font-medium text-left uppercase">Title</th>
                                 <th class="px-5 py-3 text-xs font-medium text-left uppercase">Genre</th>
                                 <th class="px-5 py-3 text-xs font-medium text-left uppercase">Actors</th>
-                                <th class="px-5 py-3 text-xs font-medium text-left uppercase">Sinopsis</th>
-                                <th class="px-5 py-3 text-xs font-medium text-left uppercase">Description</th>
-                                <th class="px-5 py-3 text-xs font-medium text-left uppercase">Durasi</th>
-                                <th class="px-5 py-3 text-xs font-medium text-left uppercase">Trailer</th>
                                 <th class="px-5 py-3 text-xs font-medium text-right uppercase">Action</th>
                             </tr>
                         </thead>
@@ -35,22 +31,18 @@
                                         <div class="flex gap-2">
                                             @foreach ($movie->genres as $genre)
                                                 <span
-                                                    class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">{{ $genre->genre }}</span>
+                                                    class="bg-yellow-100 text-yellow-800 text-xs font-semibold px-2.5 py-0.5 rounded-full">{{ $genre->name }}</span>
                                             @endforeach
                                         </div>
                                     </td>
                                     <td class="px-5 py-4 text-sm whitespace-nowrap">{{ $movie->actors }}</td>
-                                    <td class="px-5 py-4 text-sm whitespace-nowrap">{{ $movie->sinopsis }}</td>
-                                    <td class="px-5 py-4 text-sm whitespace-nowrap">{{ $movie->description }}</td>
-                                    <td class="px-5 py-4 text-sm whitespace-nowrap">{{ $movie->durasi }}</td>
-                                    <td class="px-5 py-4 text-sm whitespace-nowrap">{{ $movie->trailer }}</td>
                                     <td class="px-5 py-4 text-sm space-x-2 font-medium text-right whitespace-nowrap">
                                         <div class="flex justify-end gap-2">
                                             <a class="text-blue-500 hover:text-blue-700"
                                                 href="{{ route('movies.edit', $movie->id) }}">Edit</a>
                                             <form action="{{ route('movies.destroy', $movie->id) }}" method="POST">
-                                                @csrf
-                                                @method('DELETE')
+                                            @csrf
+                                            @method('DELETE')
                                                 <button class="text-red-500 hover:text-red-700"
                                                     href="">Delete</button>
                                             </form>
